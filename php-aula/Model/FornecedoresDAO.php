@@ -84,6 +84,8 @@ class FornecedoresDAO
     {
         $vConn = ConexaoDAO::abreConexao();
 
+        var_dump($tmpSupplier);
+
         $sql = "UPDATE suppliers
                 SET `CompanyName` = '" . $tmpSupplier->getNome() . "',
                     `ContactName` = '" . $tmpSupplier->getResponsavel() . "',
@@ -99,6 +101,39 @@ class FornecedoresDAO
 
         mysqli_query($vConn, $sql) or die(mysqli_error($vConn));
 
+    }
+
+    public function searchSupplier($tmpSupplier)
+    {
+
+        $vConn = ConexaoDAO::abreConexao();
+        $itens = new ArrayObject();
+
+        $sql = "SELECT * FROM suppliers
+                WHERE CompanyName LIKE '%$tmpSupplier%'";
+                
+        $result = mysqli_query($vConn, $sql) or die(mysqli_error($vConn));
+
+        while ($row = mysqli_fetch_assoc($result)) {
+
+            $objForn = new Fornecedores();
+
+            $objForn->setId($row['SupplierID']);
+            $objForn->setNome($row['CompanyName']);
+            $objForn->setResponsavel($row['ContactName']);
+            $objForn->setCargoResponsavel($row['ContactTitle']);
+            $objForn->setEndereco($row['Address']);
+            $objForn->setCidade($row['City']);
+            $objForn->setEstado($row['Region']);
+            $objForn->setCep($row['PostalCode']);
+            $objForn->setPais($row['Country']);
+            $objForn->setTelefone($row['Phone']);
+            $objForn->setSite($row['HomePage']);
+            
+            $itens->append($objForn);
+        }
+
+        return $itens;
     }
 
     

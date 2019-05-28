@@ -1,19 +1,18 @@
 <?php
+
+if(!$_GET['fornecedor']){
+    header("location: ?page=4");
+}
+
 $fornecedor = $_GET['fornecedor'];
-
 $objForn = new FornecedoresControl();
-
 
 $itensForn = $objForn->getSupplier($fornecedor);
 
 
-
 if (isset($_POST['nome'])) {
-    $rs = new FornecedoresControl;
-    $rs->updateSupplier();
-    
-    
-    //var_dump($rs);
+    $rs = new FornecedoresControl();
+    $rs->updateSupplier();    
 }
 ?>
 <div class="container">
@@ -47,7 +46,7 @@ if (isset($_POST['nome'])) {
     <input type="text" class="form-control" name="cep" id="cep" value="<?=$itensForn->getCEP()?>" required>
     </div>
     <div class="form-group">
-    <label for="pais">Pais</label>
+    <label for="pais">País</label>
     <input type="text" class="form-control" name="pais" id="pais" value="<?=$itensForn->getPais()?>" required>
     </div>
     <div class="form-group">
@@ -56,7 +55,7 @@ if (isset($_POST['nome'])) {
     </div>
     <div class="form-group">
     <label for="site">Site</label>
-    <input type="text" class="form-control" name="site" id="site" value="<?=$itensForn->getSite()?>" required>
+    <input type="text" class="form-control" name="site" id="site" value="<?=$itensForn->getSite()?>">
     </div>
     <input type='submit' class="btn btn-primary btn-block" value="Salvar">
 </form>

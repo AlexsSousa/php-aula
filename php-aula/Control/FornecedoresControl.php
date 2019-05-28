@@ -38,7 +38,7 @@ class FornecedoresControl
 
         $objForn->setSupplier($forn);
 
-        header("location: /php-aula/?page=3");
+        header("location: http://localhost/php-aula/?page=4");
     }
 
     public function updateSupplier()
@@ -47,15 +47,15 @@ class FornecedoresControl
         $bdProd = new FornecedoresDAO();
 
         $nome = filter_var($_POST['nome'], FILTER_SANITIZE_STRING);
-        $responsavel = filter_var($_POST['responsavel'], FILTER_SANITIZE_NUMBER_INT);
-        $cargoResponsavel = filter_var($_POST['cargoResponsavel'], FILTER_SANITIZE_NUMBER_INT);
+        $responsavel = filter_var($_POST['responsavel'], FILTER_SANITIZE_STRING);
+        $cargoResponsavel = filter_var($_POST['cargoResponsavel'], FILTER_SANITIZE_STRING);
         $endereco = filter_var($_POST['endereco'], FILTER_SANITIZE_STRING);
-        $cidade = filter_var($_POST['cidade'], FILTER_SANITIZE_NUMBER_INT);
-        $estado = filter_var($_POST['estado'], FILTER_SANITIZE_NUMBER_INT);
-        $cep = filter_var($_POST['cep'], FILTER_SANITIZE_NUMBER_INT);
-        $pais = filter_var($_POST['pais'], FILTER_SANITIZE_NUMBER_INT);
-        $telefone = filter_var($_POST['telefone'], FILTER_SANITIZE_NUMBER_INT);
-        $site = filter_var($_POST['site'], FILTER_SANITIZE_NUMBER_INT);
+        $cidade = filter_var($_POST['cidade'], FILTER_SANITIZE_STRING);
+        $estado = filter_var($_POST['estado'], FILTER_SANITIZE_STRING);
+        $cep = filter_var($_POST['cep'], FILTER_SANITIZE_STRING);
+        $pais = filter_var($_POST['pais'], FILTER_SANITIZE_STRING);
+        $telefone = filter_var($_POST['telefone'], FILTER_SANITIZE_STRING);
+        $site = filter_var($_POST['site'], FILTER_SANITIZE_STRING);
 
         $objForn->setId($_GET['fornecedor']);
         $objForn->setNome($nome);
@@ -71,9 +71,15 @@ class FornecedoresControl
 
         $bdProd->updateSupplier($objForn);
 
-        header("location: /php-aula/?page=4");
-
+        header("location: http://localhost/php-aula/?page=4");
     }
+
+    public function searchSupplier($forn)
+    {
+        $objForn = new FornecedoresDAO();
+        return $objForn->searchSupplier($forn);
+    }
+
 
     public function deleteSupplier()
     {
@@ -83,7 +89,6 @@ class FornecedoresControl
 
         $bdForn->deleteSupplier($SupplierID);
 
-        header("location: /php-aula/?page=4");
-
+        header("location: http://localhost/php-aula/?page=4");
     }
 }

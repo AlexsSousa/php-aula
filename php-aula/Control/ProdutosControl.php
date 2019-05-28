@@ -16,6 +16,12 @@ class ProdutosControl
         return $objProd->getProduct($tmpProdId);
     }
 
+    public function searchProduct($tmpProd)
+    {
+        $objProd = new ProdutosDAO();
+        return $objProd->searchProduct($tmpProd);
+    }
+
     public function setProduct()
     {
         $objProd = new Produtos();
@@ -61,7 +67,6 @@ class ProdutosControl
         $bdProd->updateProduct($objProd);
 
         header("location: /php-aula/?page=2");
-
     }
 
     public function deleteProduct()
@@ -73,6 +78,5 @@ class ProdutosControl
         $bdProd->deleteProduct($ProductID);
 
         header("location: /php-aula/?page=2");
-
     }
 }
