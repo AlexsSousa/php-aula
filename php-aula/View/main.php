@@ -95,7 +95,7 @@
                 <h1>PHP</h1>
                 <p>Projeto em PHP desenvolvido em aula no curso de Ciência da Computação</p>
                 <p>
-                    <a class="btn btn-lg btn-primary" href="https://github.com/mrfelipebraga/php-aula" role="button">Ver Projeto no Github &raquo;</a>
+                    <a class="btn btn-lg btn-primary" href="https://github.com/AlexsSousa/php-aula" role="button">Ver Projeto no Github &raquo;</a>
                 </p>
             <?php } ?>
 
